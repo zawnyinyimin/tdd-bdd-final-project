@@ -224,6 +224,15 @@ def test_query_product_by_category(self):
     data = response.get_json()
     for item in data:
         self.assertEqual(item["category"], category)
+def test_query_product_by_availability(self):
+    """It should List Products by Availability"""
+    available_product = self._create_products(1, available=True)[0]
+    self._create_products(1, available=False)
+    response = self.client.get(f"{BASE_URL}?available=true")
+    self.assertEqual(response.status_code, status.HTTP_200_OK)
+    data = response.get_json()
+    for item in data:
+        self.assertTrue(item["available"])
 
 
 
