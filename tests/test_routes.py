@@ -178,3 +178,4 @@ class TestProductRoutes(TestCase):
         data = response.get_json()
         # logging.debug("data = %s", data)
         return len(data)
+
