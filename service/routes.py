@@ -166,3 +166,5 @@ def delete_product(product_id):
     if product:
         product.delete()
     return "", status.HTTP_204_NO_CONTENT
+
+
