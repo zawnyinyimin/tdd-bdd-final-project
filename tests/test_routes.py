@@ -206,6 +206,25 @@ def test_list_all_products(self):
     self.assertEqual(response.status_code, status.HTTP_200_OK)
     data = response.get_json()
     self.assertEqual(len(data), 5)
+def test_query_product_by_name(self):
+    """It should List Products by Name"""
+    products = self._create_products(3)
+    name = products[0].name
+    response = self.client.get(f"{BASE_URL}?name={name}")
+    self.assertEqual(response.status_code, status.HTTP_200_OK)
+    data = response.get_json()
+    for item in data:
+        self.assertEqual(item["name"], name)
+def test_query_product_by_category(self):
+    """It should List Products by Category"""
+    products = self._create_products(3)
+    category = products[0].category
+    response = self.client.get(f"{BASE_URL}?category={category}")
+    self.assertEqual(response.status_code, status.HTTP_200_OK)
+    data = response.get_json()
+    for item in data:
+        self.assertEqual(item["category"], category)
+
 
 
 
